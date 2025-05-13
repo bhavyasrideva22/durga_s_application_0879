@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metabrain Login</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Archivo', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: #fcffffff;
+        }
+        
+        .login-container {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+        }
+        
+        .login-form-section {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 40px;
+        }
+        
+        .dashboard-preview {
+            width: 60%;
+            background-color: #a3cbffff;
+            border-radius: 33px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dashboard-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 33px;
+        }
+        
+        .dashboard-content {
+            position: relative;
+            z-index: 1;
+            padding: 60px 40px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .dashboard-graphics {
+            position: relative;
+            width: 500px;
+            height: 657px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            max-width: 293px;
+            height: 72px;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 31px;
+            color: #000000;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 25px;
+            color: #718096;
+            text-align: center;
+            max-width: 543px;
+            margin: 0 auto 40px;
+        }
+        
+        .login-title {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 18px;
+            color: #000000;
+            margin-bottom: 8px;
+        }
+        
+        .login-description {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 16px;
+            color: #0000007f;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-container {
+            position: relative;
+            border: 1px solid #1e2036;
+            border-radius: 4px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+        }
+        
+        .input-container input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            color: #1e2036;
+            background: transparent;
+        }
+        
+        .password-toggle {
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        
+        .password-toggle img {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+        
+        .remember-me input {
+            margin-right: 8px;
+        }
+        
+        .remember-me label {
+            font-size: 12px;
+            color: #0000007f;
+        }
+        
+        .forgot-password {
+            font-size: 12px;
+            color: #0000007f;
+            text-decoration: none;
+        }
+        
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        
+        .sign-in-btn {
+            width: 100%;
+            height: 37px;
+            background: linear-gradient(328deg, #0055aa 0%, #4a99d1 100%);
+            border-radius: 8px;
+            border: none;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        
+        .sign-up-text {
+            font-size: 12px;
+            text-align: center;
+            color: #000000;
+        }
+        
+        .sign-up-link {
+            color: #0055aa;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .sign-up-link:hover {
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            position: absolute;
+            bottom: 20px;
+            text-align: center;
+            width: 100%;
+            font-size: 14px;
+            color: #000000;
+        }
+        
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+            }
+            
+            .login-form-section {
+                width: 100%;
+                padding: 40px 20px;
+                order: 2;
+            }
+            
+            .dashboard-preview {
+                width: 100%;
+                height: 300px;
+                order: 1;
+                border-radius: 0 0 33px 33px;
+            }
+            
+            .dashboard-bg {
+                border-radius: 0 0 33px 33px;
+            }
+            
+            .dashboard-graphics {
+                width: 300px;
+                height: auto;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <section class="login-form-section">
+            <img src="../assets/images/img_shared_image_2.png" alt="Metabrain Logo" class="logo">
+            
+            <h2 class="login-title">Sign In</h2>
+            <p class="login-description">Your gateway to smarter decisions. Log in to access insights that matter.</p>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <div class="input-container">
+                        <input type="email" id="email" placeholder="Email" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-container">
+                        <input type="password" id="password" placeholder="Password" required>
+                        <button type="button" class="password-toggle" aria-label="Toggle password visibility">
+                            <img src="../assets/images/img_removeredeye.svg" alt="Show password" id="passwordToggle">
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="remember-forgot">
+                    <div class="remember-me">
+                        <input type="checkbox" id="rememberMe">
+                        <label for="rememberMe">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                
+                <button type="submit" class="sign-in-btn">Sign In</button>
+            </form>
+            
+            <p class="sign-up-text">Not a member yet? <a href="#" class="sign-up-link">Sign Up</a></p>
+        </section>
+        
+        <section class="dashboard-preview">
+            <img src="../assets/images/img_616698017545_3.png" alt="Dashboard background" class="dashboard-bg">
+            
+            <div class="dashboard-content">
+                <h1>Welcome to Metabrain</h1>
+                <p class="subtitle">Access powerful insights, track your sustainability goals, and take actionable steps toward a greener future.</p>
+                
+                <div class="dashboard-graphics">
+                    <img src="../assets/images/img_120798964905819_1_1.svg" alt="Dashboard visualization" width="500" height="657">
+                </div>
+                
+                <div class="copyright">
+                    Copyright ©2025 Metafrost.ai All Rights Reserved
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Password visibility toggle
+            const passwordInput = document.getElementById('password');
+            const passwordToggle = document.getElementById('passwordToggle');
+            
+            passwordToggle.addEventListener('click', function() {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    passwordToggle.src = 'images/img_removeredeye.svg'; // Ideally would change to a "hide" icon
+                } else {
+                    passwordInput.type = 'password';
+                    passwordToggle.src = 'images/img_removeredeye.svg';
+                }
+            });
+            
+            // Form submission
+            const loginForm = document.getElementById('loginForm');
+            
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const rememberMe = document.getElementById('rememberMe').checked;
+                
+                // Validate form
+                if (!email || !password) {
+                    alert('Please fill in all required fields');
+                    return;
+                }
+                
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('Please enter a valid email address');
+                    return;
+                }
+                
+                // Simulate login process
+                console.log('Logging in with:', { email, password, rememberMe });
+                
+                // Show loading state
+                const signInBtn = document.querySelector('.sign-in-btn');
+                signInBtn.textContent = 'Signing in...';
+                signInBtn.disabled = true;
+                
+                // Simulate API call
+                setTimeout(function() {
+                    // Reset button
+                    signInBtn.textContent = 'Sign In';
+                    signInBtn.disabled = false;
+                    
+                    // Redirect to dashboard (simulated)
+                    alert('Login successful! Redirecting to dashboard...');
+                    // window.location.href = '/dashboard';
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
